@@ -1,0 +1,377 @@
+{
+    "3": {
+      "inputs": {
+        "seed": 798182268197308,
+        "steps": 20,
+        "cfg": 4,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "denoise": 1,
+        "model": [
+          "56",
+          0
+        ],
+        "positive": [
+          "49",
+          0
+        ],
+        "negative": [
+          "7",
+          0
+        ],
+        "latent_image": [
+          "5",
+          0
+        ]
+      },
+      "class_type": "KSampler",
+      "_meta": {
+        "title": "KSampler"
+      }
+    },
+    "4": {
+      "inputs": {
+        "ckpt_name": "juggernautXL_v8Rundiffusion.safetensors"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint"
+      }
+    },
+    "5": {
+      "inputs": {
+        "width": 832,
+        "height": 1216,
+        "batch_size": 1
+      },
+      "class_type": "EmptyLatentImage",
+      "_meta": {
+        "title": "Empty Latent Image"
+      }
+    },
+    "6": {
+      "inputs": {
+        "text": "full body photo of a very heavy man wearing a vibrant wavy sweater, straight-leg blue pants, face details, grey studio background",
+        "clip": [
+          "10",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "7": {
+      "inputs": {
+        "text": "form-fitting jeans, nsfw, naked, partial, tucked in, wood floor, blurry, smooth, depth of field, painting, cinematic, 3d, side view, diagonal",
+        "clip": [
+          "4",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "8": {
+      "inputs": {
+        "samples": [
+          "3",
+          0
+        ],
+        "vae": [
+          "4",
+          2
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
+      }
+    },
+    "10": {
+      "inputs": {
+        "lora_name": "VIBRANTWAVYSWEATER-000006.safetensors",
+        "strength_model": 0.75,
+        "strength_clip": 1,
+        "model": [
+          "4",
+          0
+        ],
+        "clip": [
+          "4",
+          1
+        ]
+      },
+      "class_type": "LoraLoader",
+      "_meta": {
+        "title": "Load LoRA"
+      }
+    },
+    "16": {
+      "inputs": {
+        "guide_size": 384,
+        "guide_size_for": true,
+        "max_size": 1024,
+        "seed": 620464621787352,
+        "steps": 20,
+        "cfg": 4,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "denoise": 0.5,
+        "feather": 5,
+        "noise_mask": true,
+        "force_inpaint": true,
+        "bbox_threshold": 0.5,
+        "bbox_dilation": 10,
+        "bbox_crop_factor": 3,
+        "sam_detection_hint": "center-1",
+        "sam_dilation": 0,
+        "sam_threshold": 0.93,
+        "sam_bbox_expansion": 0,
+        "sam_mask_hint_threshold": 0.7000000000000001,
+        "sam_mask_hint_use_negative": "False",
+        "drop_size": 10,
+        "wildcard": "",
+        "cycle": 1,
+        "inpaint_model": false,
+        "noise_mask_feather": 0,
+        "image": [
+          "8",
+          0
+        ],
+        "model": [
+          "4",
+          0
+        ],
+        "clip": [
+          "4",
+          1
+        ],
+        "vae": [
+          "4",
+          2
+        ],
+        "positive": [
+          "17",
+          0
+        ],
+        "negative": [
+          "18",
+          0
+        ],
+        "bbox_detector": [
+          "20",
+          0
+        ]
+      },
+      "class_type": "FaceDetailer",
+      "_meta": {
+        "title": "FaceDetailer"
+      }
+    },
+    "17": {
+      "inputs": {
+        "text": "photo of a man, skin details",
+        "clip": [
+          "4",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "18": {
+      "inputs": {
+        "text": "smooth, blurry",
+        "clip": [
+          "4",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "20": {
+      "inputs": {
+        "model_name": "bbox/face_yolov8m.pt"
+      },
+      "class_type": "UltralyticsDetectorProvider",
+      "_meta": {
+        "title": "UltralyticsDetectorProvider"
+      }
+    },
+    "23": {
+      "inputs": {
+        "facedetection": "retinaface_resnet50",
+        "model": "GFPGANv1.4.pth",
+        "visibility": 1,
+        "codeformer_weight": 0.5,
+        "image": [
+          "16",
+          0
+        ]
+      },
+      "class_type": "ReActorRestoreFace",
+      "_meta": {
+        "title": "Restore Face"
+      }
+    },
+    "36": {
+      "inputs": {
+        "enabled": true,
+        "swap_model": "inswapper_128.onnx",
+        "facedetection": "retinaface_resnet50",
+        "face_restore_model": "GFPGANv1.4.pth",
+        "face_restore_visibility": 1,
+        "codeformer_weight": 0.5,
+        "detect_gender_source": "no",
+        "detect_gender_input": "no",
+        "source_faces_index": "0",
+        "input_faces_index": "0",
+        "console_log_level": 1,
+        "input_image": [
+          "23",
+          0
+        ],
+        "source_image": [
+          "72",
+          0
+        ]
+      },
+      "class_type": "ReActorFaceSwap",
+      "_meta": {
+        "title": "ReActor - Fast Face Swap"
+      }
+    },
+    "49": {
+      "inputs": {
+        "strength": 0.5,
+        "conditioning": [
+          "6",
+          0
+        ],
+        "control_net": [
+          "51",
+          0
+        ],
+        "image": [
+          "53",
+          0
+        ]
+      },
+      "class_type": "ControlNetApply",
+      "_meta": {
+        "title": "Apply ControlNet"
+      }
+    },
+    "51": {
+      "inputs": {
+        "control_net_name": "control-lora-depth-rank128.safetensors"
+      },
+      "class_type": "ControlNetLoader",
+      "_meta": {
+        "title": "Load ControlNet Model"
+      }
+    },
+    "52": {
+      "inputs": {
+        "image": "https://m.media-amazon.com/images/I/41AEuMaGYGS.jpg",
+        "upload": "image"
+      },
+      "class_type": "LoadImage",
+      "_meta": {
+        "title": "Load Image"
+      }
+    },
+    "53": {
+      "inputs": {
+        "preprocessor": "LeReS-DepthMapPreprocessor",
+        "resolution": 1216,
+        "image": [
+          "52",
+          0
+        ]
+      },
+      "class_type": "AIO_Preprocessor",
+      "_meta": {
+        "title": "AIO Aux Preprocessor"
+      }
+    },
+    "56": {
+      "inputs": {
+        "weight": 0.6,
+        "noise": 0,
+        "weight_type": "original",
+        "start_at": 0,
+        "end_at": 1,
+        "unfold_batch": false,
+        "ipadapter": [
+          "70",
+          0
+        ],
+        "clip_vision": [
+          "58",
+          0
+        ],
+        "image": [
+          "72",
+          0
+        ],
+        "model": [
+          "10",
+          0
+        ]
+      },
+      "class_type": "IPAdapterApply",
+      "_meta": {
+        "title": "Apply IPAdapter"
+      }
+    },
+    "58": {
+      "inputs": {
+        "clip_name": "model.safetensors"
+      },
+      "class_type": "CLIPVisionLoader",
+      "_meta": {
+        "title": "Load CLIP Vision"
+      }
+    },
+    "70": {
+      "inputs": {
+        "ipadapter_file": "ip-adapter_sdxl_vit-h.safetensors"
+      },
+      "class_type": "IPAdapterModelLoader",
+      "_meta": {
+        "title": "Load IPAdapter Model"
+      }
+    },
+    "71": {
+      "inputs": {
+        "filename_prefix": "ComfyUI",
+        "images": [
+          "36",
+          0
+        ]
+      },
+      "class_type": "SaveImage",
+      "_meta": {
+        "title": "Save Image"
+      }
+    },
+   "72": {
+      "inputs": {
+        "image": ""
+      },
+      "class_type": "ETN_LoadImageBase64",
+      "_meta": {
+        "title": "Load Image (Base64)"
+      }
+    }
+   }
